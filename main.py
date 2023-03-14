@@ -21,13 +21,14 @@ def weather():
     if data['cod'] != 200:
         return f'<h1>Error: {data["message"]}</h1>'
 
-
     temperature = round((data['main']['temp'] - 273.15) * 9/5 + 32, 2)
-    description = data['weather'][0]['description']
+    description = data['weather'][0]['description'].capitalize()
     humidity = data['main']['humidity']
     wind_speed = data['wind']['speed']
     wind_direction = data['wind']['deg']
     cloudiness = data['clouds']['all']
+    icon_code = data['weather'][0]['icon']
+    icon_url = f'http://openweathermap.org/img/wn/{icon_code}.png'
 
     return render_template('weather.html',
         city=city,
@@ -37,8 +38,8 @@ def weather():
         humidity=humidity,
         wind_speed=wind_speed,
         wind_direction=wind_direction,
-        cloudiness=cloudiness)
+        cloudiness=cloudiness,
+        icon_url=icon_url)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
-

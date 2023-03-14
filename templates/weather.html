@@ -4,51 +4,63 @@
     <title>Weather in {{ city }}, {{ state }}</title>
     <style>
         body {
-            background-color: #f5f5f5;
             font-family: Arial, sans-serif;
-            color: #333;
+            font-size: 16px;
+            line-height: 1.4;
+            background-color: #f2f2f2;
         }
-        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
         h1 {
             font-size: 36px;
-            text-align: center;
-            margin-top: 50px;
-        }
-        
-        p {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-        
-        strong {
             font-weight: bold;
+            margin-top: 0;
         }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 50px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px #999;
+        img.weather-icon {
+            display: inline-block;
+            height: 64px;
+            margin-right: 20px;
+            vertical-align: middle;
         }
-        
-        .weather-icon {
-            width: 100px;
-            margin: 0 auto;
+        .weather-description {
+            font-size: 24px;
+            font-weight: bold;
+            vertical-align: middle;
+            margin: 0;
+        }
+        .weather-data {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .weather-data p {
+            flex-basis: 50%;
+            margin: 0;
+            padding: 10px 0;
+        }
+        .weather-data p strong {
             display: block;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Weather in {{ city }}, {{ state }}</h1>
-        <img class="weather-icon" src="{{ icon_url }}" alt="{{ description }}">
-        <p><strong>Temperature:</strong> {{ temperature }} &deg;F</p>
-        <p><strong>Description:</strong> {{ description }}</p>
-        <p><strong>Humidity:</strong> {{ humidity }}%</p>
-        <p><strong>Wind Speed:</strong> {{ wind_speed }} m/s</p>
-        <p><strong>Wind Direction:</strong> {{ wind_direction }} &deg;</p>
-        <p><strong>Cloudiness:</strong> {{ cloudiness }}%</p>
+        <div class="weather-data">
+            <img src="{{ icon_url }}" alt="{{ description }}" class="weather-icon">
+            <p><strong>Temperature:</strong> {{ temperature }} &deg;F</p>
+            <p><strong>Description:</strong> <span class="weather-description">{{ description }}</span></p>
+            <p><strong>Humidity:</strong> {{ humidity }}%</p>
+            <p><strong>Wind Speed:</strong> {{ wind_speed }} m/s</p>
+            <p><strong>Wind Direction:</strong> {{ wind_direction }} &deg;</p>
+            <p><strong>Cloudiness:</strong> {{ cloudiness }}%</p>
+        </div>
     </div>
 </body>
 </html>
+
